@@ -5,6 +5,7 @@ import { JSONDatabaseAdapter } from './Meta.js';
 import { cleanupDatabase } from './Meta.js';
 import registerV1 from './V1.js';
 import registerV2 from './V2.js';
+import registerV3 from './V3.js';
 import type { BareRemote } from './requestUtil.js';
 import { isValid, parse } from 'ipaddr.js';
 import { lookup } from 'node:dns';
@@ -88,6 +89,7 @@ export = function createBareServer(
 	});
 	registerV1(server);
 	registerV2(server);
+	registerV3(server);
 
 	server.once('close', () => {
 		for (const cb of cleanup) cb();
